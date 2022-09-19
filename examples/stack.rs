@@ -1,47 +1,59 @@
 struct StackI32 {
     data: [i32; 500],
-    index: i32,
+    index: usize,
 }
 
 impl StackI32 {
-    fn new() -> Self {
-        StackI32 {data: [0; 500], index: -1}
+    fn new_data() -> Self {
+        StackI32 {data: [0; 500], index: 0}
     }
 
-    fn length(&self) -> i32 {
-        self.index + 1
+    fn length(&self) -> usize {
+        self.index
     }
 
-    fn push(&self, item: i32) {
+    fn push(&mut self, item: i32) {
         self.index = self.index + 1;
         self.data[self.index] = item
     }
+
+    fn pop(&mut self) -> Option<usize> {
+        self.pop()
+    }
+
+    fn is_empty(&self) -> bool {
+        self.data.is_empty()
+    }
 }
 
-// impl<T> Stack<T> {
-//     fn new() -> Self {
-//         Stack { stack: Vec::new() }
-//     }
-//
-//     fn length(&self) -> usize {
-//         self.stack.len()
-//     }
-//
-//     fn pop(&mut self) -> Option<T> {
-//         self.stack.pop()
-//     }
-//
-//     fn push(&mut self, item: T) {
-//         self.stack.push(item)
-//     }
-//
-//     fn is_empty(&self) -> bool {
-//         self.stack.is_empty()
-//     }
-//
-//     fn peek(&self) -> Option<&T> {
-//         self.stack.last()
-//     }
-// }
+#[cfg(test)]
+
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_push() {
+        let mut stack = StackI32::new_data();
+        stack.push(1);
+        stack.push(3);
+        assert_eq!(2, stack.length());
+    }
+
+    #[test]
+    fn test_pop() {
+        let mut stack = StackI32::new_data();
+        stack.push(10);
+        assert_eq!(Some(1), stack.pop());
+        assert_eq!(None, stack.pop());
+    }
+
+    #[test]
+    fn test_len() {
+        let mut stack = StackI32::new_data();
+        stack.push(1);
+        stack.push(10);
+        assert_eq!(2, stack.length());
+    }
+}
 
 fn main() {}
