@@ -1,28 +1,44 @@
-struct StackI32 {
+pub struct StackI32 {
     data: [i32; 500],
     index: usize,
 }
 
 impl StackI32 {
-    fn new_data() -> Self {
+    pub fn new_data() -> Self {
         StackI32 {data: [0; 500], index: 0}
     }
 
-    fn length(&self) -> usize {
+    pub fn push(&mut self, item: i32) {
+        self.data[self.index] = item;
+        self.index = self.index + 1
+    }
+
+    pub fn pop(&mut self) {
+        if !self.is_empty() {
+            self.index = self.index - 1
+        }
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.data.is_empty()
+    }
+
+    pub fn length(&self) -> usize {
         self.index
     }
 
-    fn push(&mut self, item: i32) {
-        self.index = self.index + 1;
-        self.data[self.index] = item
+    pub fn peek(&self) -> Option<&usize> {
+        if !self.is_empty() {
+            Some(&self.index)
+        } else {
+            None
+        }
     }
 
-    fn pop(&mut self) -> Option<usize> {
-        self.pop()
-    }
-
-    fn is_empty(&self) -> bool {
-        self.data.is_empty()
+    pub fn check() {
+        for i in 1..1000 {
+            println!("The values are {:?}", i);
+        }
     }
 }
 
@@ -36,15 +52,22 @@ mod tests {
         let mut stack = StackI32::new_data();
         stack.push(1);
         stack.push(3);
-        assert_eq!(2, stack.length());
+        assert_eq!(2, stack.get_value(0));
     }
 
     #[test]
     fn test_pop() {
         let mut stack = StackI32::new_data();
         stack.push(10);
-        assert_eq!(Some(1), stack.pop());
-        assert_eq!(None, stack.pop());
+        stack.push(11);
+        stack.push(1);
+        assert_eq!(stack.get_value(2), 1);
+        stack.pop();
+        assert_eq!(stack.length(), 2);
+        stack.pop();
+        assert_eq!(stack.length(), 1);
+        stack.pop();
+        assert_eq!(stack.length(), 0);
     }
 
     #[test]
@@ -53,6 +76,14 @@ mod tests {
         stack.push(1);
         stack.push(10);
         assert_eq!(2, stack.length());
+    }
+
+    #[test]
+    fn test_peek() {
+        let mut stack = StackI32::new_data();
+        stack.push(1);
+        stack.push(10);
+        assert_eq!(stack.peek(), Some(&2))
     }
 }
 
