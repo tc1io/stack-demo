@@ -52,7 +52,7 @@ mod tests {
         let mut stack = StackI32::new_data();
         stack.push(1);
         stack.push(3);
-        assert_eq!(2, stack.get_value(0));
+        assert_eq!(2, stack.length());
     }
 
     #[test]
@@ -61,7 +61,6 @@ mod tests {
         stack.push(10);
         stack.push(11);
         stack.push(1);
-        assert_eq!(stack.get_value(2), 1);
         stack.pop();
         assert_eq!(stack.length(), 2);
         stack.pop();

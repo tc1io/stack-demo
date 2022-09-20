@@ -47,7 +47,7 @@
       <recent name="$PROJECT_DIR$/../" />
     </key>
   </component>
-  <component name="RunManager" selected="Cargo.Run stack">
+  <component name="RunManager" selected="Cargo.Test stack::tests">
     <configuration name="Check" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="command" value="check " />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -82,8 +82,8 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test tests::test_len" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="command" value="test --package stack --example stack tests::test_len -- --exact" />
+    <configuration name="Test stack::tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package stack --example stack tests" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <option name="channel" value="DEFAULT" />
       <option name="requiredFeatures" value="true" />
@@ -154,17 +154,17 @@
       <item itemvalue="Cargo.Check" />
       <item itemvalue="Cargo.Test tests::test_pop" />
       <item itemvalue="Cargo.Test tests::test_push" />
-      <item itemvalue="Cargo.Test tests::test_len" />
       <item itemvalue="Cargo.Run stack" />
       <item itemvalue="Cargo.Test tests::test_peek" />
+      <item itemvalue="Cargo.Test stack::tests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Cargo.Run stack" />
+        <item itemvalue="Cargo.Test stack::tests" />
         <item itemvalue="Cargo.Test tests::test_pop" />
-        <item itemvalue="Cargo.Test tests::test_peek" />
         <item itemvalue="Cargo.Test tests::test_push" />
-        <item itemvalue="Cargo.Test tests::test_len" />
+        <item itemvalue="Cargo.Run stack" />
+        <item itemvalue="Cargo.Test tests::test_peek" />
       </list>
     </recent_temporary>
   </component>
