@@ -87,4 +87,10 @@ mod tests {
     }
 }
 
-fn main() {}
+fn main() {
+    pub fn check() {
+        for i in 1..1000 {
+            println!("The values are {:?}", i);
+        }
+    }
+}
