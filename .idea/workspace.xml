@@ -47,7 +47,7 @@
       <recent name="$PROJECT_DIR$/../" />
     </key>
   </component>
-  <component name="RunManager" selected="Cargo.Test tests::test_pop">
+  <component name="RunManager" selected="Cargo.Run stack">
     <configuration name="Check" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="command" value="check " />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -160,9 +160,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo.Run stack" />
         <item itemvalue="Cargo.Test tests::test_pop" />
         <item itemvalue="Cargo.Test tests::test_peek" />
-        <item itemvalue="Cargo.Run stack" />
         <item itemvalue="Cargo.Test tests::test_push" />
         <item itemvalue="Cargo.Test tests::test_len" />
       </list>
@@ -179,7 +179,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663562626763</updated>
-      <workItem from="1663562628964" duration="34952000" />
+      <workItem from="1663562628964" duration="35279000" />
     </task>
     <servers />
   </component>
