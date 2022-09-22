@@ -56,11 +56,11 @@ impl<T> Stack<T> {
     //     self.data
     // }
 
-    fn check() {
-        for i in 1..1000 {
-            println!("The values are {:?}", i);
-        }
-    }
+    // fn check() {
+    //     for i in 1..1000 {
+    //         println!("The values are {:?}", i);
+    //     }
+    // }
 }
 
 #[cfg(test)]
@@ -119,9 +119,9 @@ mod tests {
 }
 
 fn main() {
-    fn check() {
-        for i in 1..1000 {
-            println!("The values are {:?}", i);
-        }
-    }
+    // fn check() {
+    //     for i in 1..1000 {
+    //         println!("The values are {:?}", i);
+    //     }
+    // }
 }
