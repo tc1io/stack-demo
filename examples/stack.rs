@@ -1,41 +1,62 @@
-pub struct StackI32 {
-    data: [i32; 500],
-    index: usize,
+#![allow(unused)]
+
+struct Stack<T> {
+    data: Link<T>,
+    // index: T,
+    // next: Link <T>,
 }
 
-impl StackI32 {
-    pub fn new_data() -> Self {
-        StackI32 {data: [0; 500], index: 0}
+// type Link<T> = [T; 500];
+
+type Link<T> = Option<Box<Node<T>>>;
+
+// type Link<T> = Option<[T]>;
+// Option<Node<T>>;
+
+struct Node<T> {
+    elem: T,
+    index: Link<T>,
+}
+
+impl<T> Stack<T> {
+    pub fn new() -> Self {
+        Stack { data: None }
     }
 
-    pub fn push(&mut self, item: i32) {
-        self.data[self.index] = item;
-        self.index = self.index + 1
+    fn push(&mut self, item: T) {
+        let new_node = Box::new(Node {
+            elem: item,
+            index: self.data.take(),
+        });
+        self.data = Some(new_node);
+        // self.data[&self.] = item;
+        // self.data = &self.data + 1
     }
 
-    pub fn pop(&mut self) {
-        if !self.is_empty() {
-            self.index = self.index - 1
-        }
+    //CHECK WITH JAN IF RUST HELPS WITH REMOVING FIXED SIZED ARRAY
+
+    fn pop(&mut self) -> Option<T> {
+        self.data.take().map(|node| {
+            self.data = node.index;
+            node.elem
+        })
     }
 
-    pub fn is_empty(&self) -> bool {
-        self.data.is_empty()
+    fn peek(&self) -> Option<&T> {
+        self.data.as_ref().map(|node|{
+            &node.elem
+        })
     }
 
-    pub fn length(&self) -> usize {
-        self.index
+    fn is_empty(&self) -> bool {
+        self.data.is_none()
     }
 
-    pub fn peek(&self) -> Option<&usize> {
-        if !self.is_empty() {
-            Some(&self.index)
-        } else {
-            None
-        }
-    }
+    // fn length(&self) -> Link<T> {
+    //     self.data
+    // }
 
-    pub fn check() {
+    fn check() {
         for i in 1..1000 {
             println!("The values are {:?}", i);
         }
@@ -49,45 +70,56 @@ mod tests {
 
     #[test]
     fn test_push() {
-        let mut stack = StackI32::new_data();
+        let mut stack = Stack::new();
+
+        assert_eq!(stack.pop(), None);
+
         stack.push(1);
+        stack.push(2);
         stack.push(3);
-        assert_eq!(2, stack.length());
-    }
 
-    #[test]
-    fn test_pop() {
-        let mut stack = StackI32::new_data();
-        stack.push(10);
-        stack.push(11);
-        stack.push(1);
-        stack.pop();
-        assert_eq!(stack.length(), 2);
-        stack.pop();
-        assert_eq!(stack.length(), 1);
-        stack.pop();
-        assert_eq!(stack.length(), 0);
-    }
+        assert_eq!(stack.pop(), Some(3));
+        assert_eq!(stack.pop(), Some(2));
 
-    #[test]
-    fn test_len() {
-        let mut stack = StackI32::new_data();
-        stack.push(1);
-        stack.push(10);
-        assert_eq!(2, stack.length());
-    }
+        stack.push(4);
+        stack.push(5);
 
-    #[test]
-    fn test_peek() {
-        let mut stack = StackI32::new_data();
-        stack.push(1);
-        stack.push(10);
-        assert_eq!(stack.peek(), Some(&2))
+        assert_eq!(stack.peek(), Some(&5))
     }
+    //
+    // #[test]
+    // fn test_pop() {
+    //     let mut stack = StackI32::new_data();
+    //     stack.push(10);
+    //     stack.push(11);
+    //     stack.push(1);
+    //     stack.pop();
+    //     assert_eq!(stack.length(), 2);
+    //     stack.pop();
+    //     assert_eq!(stack.length(), 1);
+    //     stack.pop();
+    //     assert_eq!(stack.length(), 0);
+    // }
+    //
+    // #[test]
+    // fn test_len() {
+    //     let mut stack = StackI32::new_data();
+    //     stack.push(1);
+    //     stack.push(10);
+    //     assert_eq!(2, stack.length());
+    // }
+
+    // #[test]
+    // fn test_peek() {
+    //     let mut stack = StackI32::new_data();
+    //     stack.push(1);
+    //     stack.push(10);
+    //     assert_eq!(stack.peek(), Some(&2))
+    // }
 }
 
 fn main() {
-    pub fn check() {
+    fn check() {
         for i in 1..1000 {
             println!("The values are {:?}", i);
         }
