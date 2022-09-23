@@ -120,12 +120,13 @@
 
 struct Stack<T> {
     data: [T; 500],
-    index: T,
+    index: usize,
 }
+
 impl<T> Stack<T> {
 
-    fn new(data: [T; 500], index: T) -> Self {
-        Self { data, index }
+    fn new(data: []) -> Self {
+        Stack { data: [0; 500], index: 0 }
     }
 
     fn push(&mut self, item: T) {
@@ -141,7 +142,7 @@ impl<T> Stack<T> {
 
     fn peek(&self) -> Option<&T> {
         if !self.is_empty() {
-            Some(&self.index)
+            Some(&self.data)
         } else {
             None
         }
@@ -177,8 +178,8 @@ fn main() {
     stack.push(1);
     stack.push(2);
     stack.push(3);
-    stack.pop();
-    stack.pop();
+    // stack.pop();
+    // stack.pop();
     stack.push(4);
     stack.push(5);
     stack.push(6);
