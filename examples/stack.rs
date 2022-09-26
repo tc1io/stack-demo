@@ -128,14 +128,14 @@ impl<T:Default + Copy> Stack<T> {
 
     fn new() -> Self {
         let x = T::default();
-        Self { data: [x; 500]
-            , index: 0
+        Self { data: [x; 500],
+             index: 0
         }
     }
 
 
     fn push(&mut self, item: T) {
-        self.data[self.index as usize] = item;
+        self.data[self.index] = item;
         self.index = self.index + 1;
     }
 
@@ -157,16 +157,6 @@ impl<T:Default + Copy> Stack<T> {
     fn is_empty(&self) -> bool {
         self.index == 0
     }
-    //
-    // fn length(&self) -> T {
-    //     &self.index
-    // }
-    //
-    // // fn check() {
-    // //     for i in 1..1000 {
-    // //         println!("The values are {:?}", i);
-    // //     }
-    // // }
 }
 
 #[derive(Default, Clone, Copy)]
@@ -175,23 +165,22 @@ struct User {
 }
 
 fn main() {
-    // fn check() {
-    //     for i in 1..1000 {
-    //         println!("The values are {:?}", i);
-    //     }
-    // }
+    let mut stack = Stack::new();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.pop();
+    stack.pop();
+    stack.push(4);
+    stack.push(5);
+    stack.push(6);
+    stack.push(7);
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
 
-    let mut stack: Stack<User> = Stack::new();
-    // stack.push(1);
-    // stack.push(2);
-    // stack.push(3);
-    // stack.pop();
-    // stack.pop();
-    // stack.push(4);
-    // stack.push(5);
-    // stack.push(6);
-    // stack.push(7);
-    //
-    // println!("The stack length is {:?}", stack.length());
-    // println!("The last added value is {:?}", stack.peek());
+    println!("The last added value is {:?}", stack.peek());
+    println!("{}", stack.is_empty());
 }
