@@ -1,3 +1,5 @@
+use std::fs::File;
+
 fn main() {
-    println!("Hello, world!");
+   let a = File::open("abc.txt").expect("Cannot find the file");
 }

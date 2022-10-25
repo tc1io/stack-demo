@@ -118,36 +118,42 @@
 //     // }
 // }
 
+// enum Option<T> {
+//      Some(T),
+//      None
+// }
 
+#[derive(Debug)]
 struct Stack<T> {
-    data: [T; 500],
+    data: [Option<T>; 500],
     index: usize,
 }
 
-impl<T:Default + Copy> Stack<T> {
+impl<T: Default + Copy> Stack<T> {
 
     fn new() -> Self {
-        let x = T::default();
-        Self { data: [x; 500],
-             index: 0
+        Self { data: [None; 500]
+            , index: 0
         }
     }
 
 
     fn push(&mut self, item: T) {
-        self.data[self.index] = item;
+        if self.index >= 500 { panic!("out of bounds"); }
+
+        self.data[self.index as usize] = Some(item);
         self.index = self.index + 1;
     }
 
     fn pop(&mut self) -> T {
-        let val = self.data[self.index-1];
+        let val:T = self.data[self.index-1].expect("a used stack element cannot be None");
         self.index = &self.index - 1;
         return val
     }
 
     fn peek(&self) -> Option<&T> {
         if !self.is_empty() {
-            Some(&self.data[self.index-1])
+            self.data[self.index-1].as_ref()
         } else {
             None
         }
@@ -175,12 +181,6 @@ fn main() {
     stack.push(5);
     stack.push(6);
     stack.push(7);
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
 
     println!("The last added value is {:?}", stack.peek());
-    println!("{}", stack.is_empty());
 }
